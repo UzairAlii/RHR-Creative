@@ -170,7 +170,7 @@ const Product = ({ id }) => {
         {/* Modal Preview */}
         {previewOpen && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 bg-opacity-90"
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 bg-opacity-90"
             onClick={closePreview}
           >
             {/* Stop propagation for modal content */}
@@ -193,28 +193,28 @@ const Product = ({ id }) => {
               </button>
 
               {/* Left Button */}
-              <button
-                className={`absolute left-4 top-1/2 -translate-y-1/2 text-3xl px-3 py-2 rounded-full bg-black bg-opacity-60 text-white transition
+              <div
+                className={`absolute left-4 top-1/2 -translate-y-1/2 text-3xl h-16 w-16 flex items-center justify-center rounded-full bg-black bg-opacity-60 text-white transition
           ${previewIndex === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-opacity-80 cursor-pointer'}`}
                 onClick={goLeft}
                 disabled={previewIndex === 0}
                 aria-label="Previous"
                 style={{ pointerEvents: previewIndex === 0 ? 'none' : 'auto' }}
               >
-                &#8592;
-              </button>
+                <img className='w-7 rotate-180' src={Images.chevron} alt="" />
+              </div>
 
               {/* Right Button */}
-              <button
-                className={`absolute right-4 top-1/2 -translate-y-1/2 text-3xl px-3 py-2 rounded-full bg-black bg-opacity-60 text-white transition
+              <div
+                className={`absolute right-4 top-1/2 -translate-y-1/2 text-3xl h-16 w-16 flex items-center justify-center rounded-full bg-black bg-opacity-60 text-white transition
           ${previewIndex === selectedColorImages.length - 1 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-opacity-80 cursor-pointer'}`}
                 onClick={goRight}
                 disabled={previewIndex === selectedColorImages.length - 1}
                 aria-label="Next"
                 style={{ pointerEvents: previewIndex === selectedColorImages.length - 1 ? 'none' : 'auto' }}
               >
-                &#8594;
-              </button>
+                <img className='w-7' src={Images.chevron} alt="" />
+              </div>
 
               {/* Image with slide animation */}
               <div className="flex items-center justify-center w-full h-full">

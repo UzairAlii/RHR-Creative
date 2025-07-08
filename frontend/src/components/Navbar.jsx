@@ -67,7 +67,7 @@ const Navbar = ({ onFavouritesClick }) => {
     Navbar bg-black
     transition-colors duration-500
     z-[1000]
-    h-[70%] flex items-center justify-between gap-20 px-5 py-3 sm:py-5 lg:px-10 leading-none w-full
+    h-[70%] flex items-center justify-between gap-20 pl-2 pr-5 py-5 sm:py-5 lg:px-10 leading-none w-full
   `}
   style={{
     backdropFilter: isHome && !scrolled ? 'none' : undefined,
@@ -76,8 +76,8 @@ const Navbar = ({ onFavouritesClick }) => {
 
         <NavLink to={"/"}>
           <div className="logo flex flex-col items-center text-center cursor-pointer">
-            <h1 id='rhr' className='text-4xl text-white'>RHR</h1>
-            <h1 id='creative' className='text-2xl text-[#a5a5a5]'>Creative</h1>
+            <h1 id='rhr' className='text-2xl md:text-4xl text-white'>RHR</h1>
+            <h1 id='creative' className='text-md md:text-2xl text-[#a5a5a5]'>Creative</h1>
           </div>
         </NavLink>
 

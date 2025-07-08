@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NeedHelp from "./needHelp";
+import NeedHelp from "./NeedHelp";
 import { Images } from "../../assets/assets";
 
 const faqData = [

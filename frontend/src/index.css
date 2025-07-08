@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+#rhr {
+    font-family: "Jaro", sans-serif;
+}
+
+#cartIcon span {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    background-color: white;
+    color: black;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: 0.3s ease-in-out;
+    height: 100vh;
+    transform: translateX(100%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.showMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    max-width: 60vw;
+    transform: translateX(0%);
+    padding: 3vw;
+    background-color: white;
+    color: black;
+    overflow-y: scroll;
+}
+
+.showMenu .close {
+    display: block;
+    font-size: 2.5vw;
+    font-weight: 400;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    transition: opacity 0.3s;
+}
+
+.menu-overlay.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.back-icons p {
+    display: block;
+}
+
+.showMenu .uls>a {
+    width: 100%;
+    padding: 0px 0px 2vw 0px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.103);
+}
+
+.showMenu .uls>a.active li {
+    color: red;
+}
+
+.showMenu .uls>a:active {
+    background-color: rgb(236, 236, 236);
+}
+
+.showMenu .uls>a li {
+    color: black;
+    display: block;
+    text-align: center;
+    width: 100%;
+    text-align: start;
+    padding-top: 20px;
+}
+
+.slider-container {
+    position: relative;
+    width: 100vw;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    height: 100%;
+    width: 100vw;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+    flex-shrink: 0;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+@media (max-width: 425px) {
+    .slider-container {
+        position: relative;
+        width: 100vw;
+        height: 70vh;
+        overflow: hidden;
+    }
+
+    .slide {
+        flex-shrink: 0;
+        width: 100vw;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+    }
+}
+
+@layer utilities {
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(35px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.5s ease-out both;
+  }
+}
+
+.sample-product-image {
+    width: 230px;
+    height: 250px;
+}
+
+.sample-product-name {
+    font-size: 10px;
+    margin-top: -50%;
+}
+
+.sample-product-price {
+    font-size: 0.8rem;
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.ThankspopUpitems {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    height: fit-content;
+    width: 50vw;
+    max-width: 400px;
+    min-width: 250px;
+    padding: 2rem 1.5rem;
+    transform: translate(-50%, -50%) scale(0);
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    background-color: white;
+    z-index: 1001;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0; 
+    border-radius: 18px;
+}
+
+.ShowThanksForOrderPopup {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .ThankspopUpitems {
+        width: 80vw;
+        max-width: 95vw;
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ThankspopUpitems {
+        width: 96vw;
+        min-width: unset;
+        max-width: 98vw;
+        padding: 1rem 0.5rem;
+        border-radius: 10px;
+    }
+}
+@layer utilities {
+  @keyframes popup {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-popup {
+    animation: popup 0.3s ease-out forwards;
+  }
+}

@@ -266,27 +266,30 @@ const ProfileDrawer = ({ isOpen, onClose }) => {
                                 <hr className="flex-grow border-t border-gray-300" />
                             </div>
 
-                            <GoogleLogin
-                                onSuccess={handleGoogleLogin}
-                                onError={() => toast.error("Google sign-in failed")}
-                                useOneTap
-                            >
-                                {(renderProps) => (
-                                    <button
-                                        onClick={renderProps.onClick}
-                                        disabled={renderProps.disabled}
-                                        className="flex items-center justify-center w-full gap-4 py-4 px-6 border border-gray-300 rounded-lg shadow-sm bg-white hover:shadow-md transition-all duration-300"
-                                    >
-                                        <img src={Images.google} alt="Google" className="w-6 h-6" />
-                                        <span className="text-gray-700 font-medium text-base">Continue with Google</span>
-                                    </button>
-                                )}
-                            </GoogleLogin>
-
+                            <div className="w-full">
+                                <GoogleLogin
+                                    onSuccess={handleGoogleLogin}
+                                    onError={() => toast.error("Google sign-in failed")}
+                                    useOneTap
+                                >
+                                    {(renderProps) => (
+                                        <div className="w-full"> 
+                                            <button
+                                                onClick={renderProps.onClick}
+                                                disabled={renderProps.disabled}
+                                                className="flex items-center justify-center w-full gap-4 py-4 px-6 border border-gray-300 rounded-lg shadow-sm bg-white hover:shadow-md transition-all duration-300"
+                                            >
+                                                <img src={Images.google} alt="Google" className="w-6 h-6" />
+                                                <span className="text-gray-700 font-medium text-base">Continue with Google</span>
+                                            </button>
+                                        </div>
+                                    )}
+                                </GoogleLogin>
+                            </div>
 
 
                             <p className="text-xs text-gray-500 mt-6 text-center">
-                                By signing in, you agree to RHR Creative's <span className="underline cursor-pointer">Privacy Policy</span> and <span className="underline cursor-pointer">Terms & Conditions</span>.
+                                By signing in, you agree to RHR Creative's <a href="/privacy-policy" className="underline cursor-pointer">Privacy Policy</a> and <a href="/terms-of-service" className="underline cursor-pointer">Terms & Conditions</a>.
                             </p>
                         </>
                     )}

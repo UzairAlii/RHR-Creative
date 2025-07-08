@@ -21,9 +21,6 @@ import thanks from "./thanks.png"
 import google from "./google.png"
 import email from "./email.png"
 import chevronRight from "./right-chevron.png"
-import poster1 from "./poster.webp"
-import poster2 from "./poster2.webp"
-import poster3 from "./poster3.webp"
 import chiballi from "./chiballi.webp"
 import jazzcashImg from "./jazzcashImg.webp"
 import easypaisaImg from "./easypaisaImg.webp"
@@ -592,9 +589,6 @@ export const Images = {
     chevron,
     filter,
     heart,
-    poster1,
-    poster2,
-    poster3,
     google,
     setting,
     orderBag,

@@ -2,7 +2,7 @@ import React from 'react'
 import LandingPage from './LandingPage'
 import Categories from './Categories'
 import BestProducts from './BestProducts'
-import ImageSection from './imageSection'
+import ImageSection from './ImageSection'
 
 const Home = () => {
   return (

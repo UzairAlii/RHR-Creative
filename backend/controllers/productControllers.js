@@ -6,90 +6,96 @@ import Product from "../models/productModel.js";
 
 // Add Product
 const addProduct = async (req, res) => {
-  try {
-    const {
-      productName,
-      price,
-      discountPercent,
-      wholesalePrice,
-      colors,
-      category,
-      stock,
-      bestSeller,
-      para,
-      material,
-      compat,
-      texture,
-      closure,
-      compartment,
-      zips,
-      strap,
-      length,
-      width,
-      height,
-      weight,
-    } = req.body;
+    try {
+        const {
+            productName,
+            price,
+            discountPercent,
+            wholesalePrice,
+            colors,
+            category,
+            stock,
+            bestSeller,
+            para,
+            material,
+            compat,
+            texture,
+            closure,
+            compartment,
+            zips,
+            strap,
+            length,
+            width,
+            height,
+            weight,
+        } = req.body;
 
-    const colorArr = JSON.parse(colors);
+        const colorArr = JSON.parse(colors);
 
-    let colorImages = [];
-    let imageIndex = 1;
-    for (let i = 0; i < colorArr.length; i++) {
-      let images = [];
-      for (let j = 0; j < 4; j++) {
-        const fileKey = `image${imageIndex}`;
-        if (req.files && req.files[fileKey] && req.files[fileKey][0]) {
-          const url = await uploadToCloudinary(req.files[fileKey][0].path);
-          images.push(url);
+        let colorImages = [];
+        let imageIndex = 1;
+
+
+        for (let i = 0; i < colorArr.length; i++) {
+            let images = [];
+            for (let j = 0; j < 4; j++) {
+                const fileKey = `image${imageIndex}`;
+                if (req.files?.[fileKey]?.[0]) {
+                    const buffer = req.files[fileKey][0].buffer;
+                    const filename = `product-${Date.now()}-${imageIndex}`;
+                    const url = await uploadToCloudinary(buffer, filename);
+                    images.push(url);
+                }
+                imageIndex++;
+            }
+
+
+            const colorImagesKey = ["firstColorImages", "secondColorImages", "thirdColorImages", "forthColorImages"][i];
+            if (req.body[colorImagesKey]) {
+                const arr = JSON.parse(req.body[colorImagesKey]);
+                arr.forEach(img => {
+                    if (typeof img === "string" && img) images.push(img);
+                });
+            }
+            colorImages.push({ color: colorArr[i], images });
         }
-        imageIndex++;
-      }
-      const colorImagesKey = ["firstColorImages", "secondColorImages", "thirdColorImages", "forthColorImages"][i];
-      if (req.body[colorImagesKey]) {
-        const arr = JSON.parse(req.body[colorImagesKey]);
-        arr.forEach(img => {
-          if (typeof img === "string" && img) images.push(img);
+
+        const specs = {
+            material,
+            compat,
+            texture,
+            closure,
+            compartment,
+            zips,
+            strap,
+            length,
+            width,
+            height,
+            weight,
+        };
+
+        if (!productName || !price || !category || !colorArr.length) {
+            return res.json({ success: false, message: "Missing required fields." });
+        }
+
+        const product = new Product({
+            productName,
+            price,
+            discountPercent,
+            wholesalePrice,
+            colors: colorArr,
+            colorImages,
+            category,
+            stock,
+            bestSeller,
+            para,
+            specs,
+            date: Date.now(),
         });
-      }
-      colorImages.push({ color: colorArr[i], images });
-    }
 
-    const specs = {
-      material,
-      compat,
-      texture,
-      closure,
-      compartment,
-      zips,
-      strap,
-      length,
-      width,
-      height,
-      weight,
-    };
+        await product.save();
 
-    if (!productName || !price || !category || !colorArr.length) {
-      return res.json({ success: false, message: "Missing required fields." });
-    }
-
-    const product = new Product({
-      productName,
-      price,
-      discountPercent,
-      wholesalePrice,
-      colors: colorArr,
-      colorImages,
-      category,
-      stock,
-      bestSeller,
-      para,
-      specs,
-      date: Date.now(),
-    });
-
-    await product.save();
-
-    const html = `
+        const html = `
       <p>Dear Rehman Shahid,</p>
       <p><b>New product added on your website:</b></p>
       <ul>
@@ -98,13 +104,13 @@ const addProduct = async (req, res) => {
         <li><b>Price:</b> ${product.price}</li>
       </ul>
     `;
-    await sendAdminMail("New Product Added - RHR Creative", html);
+        await sendAdminMail("New Product Added - RHR Creative", html);
 
-    res.json({ success: true, message: "Product added successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: "Server error" });
-  }
+        res.json({ success: true, message: "Product added successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
 };
 
 // Edit Product
@@ -120,7 +126,7 @@ const editProduct = async (req, res) => {
             ? JSON.parse(updateFields.colors)
             : updateFields.colors;
 
-        const colorImagesArray = []; 
+        const colorImagesArray = [];
 
         const imageUploadFields = [
             { range: [1, 4], tempField: "firstColorImages" },
@@ -135,10 +141,11 @@ const editProduct = async (req, res) => {
             for (let j = imageUploadFields[i].range[0]; j <= imageUploadFields[i].range[1]; j++) {
                 const imageFile = req.files[`image${j}`];
                 if (imageFile && imageFile[0]) {
-                    const result = await cloudinary.uploader.upload(imageFile[0].path, {
-                        resource_type: "image",
-                    });
-                    images.push(result.secure_url);
+                    const buffer = imageFile[0].buffer;
+                    const filename = `product-${Date.now()}-${j}`;
+                    const url = await uploadToCloudinary(buffer, filename);
+                    images.push(url);
+
                 }
             }
 

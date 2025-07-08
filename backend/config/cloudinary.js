@@ -1,5 +1,5 @@
+// config/cloudinary.js
 import { v2 as cloudinary } from "cloudinary";
-import fs from "fs";
 
 const connectCloudinary = async () => {
   cloudinary.config({
@@ -9,16 +9,21 @@ const connectCloudinary = async () => {
   });
 };
 
-export const uploadToCloudinary = async (localFilePath) => {
-  try {
-    const result = await cloudinary.uploader.upload(localFilePath, {
-      folder: "products",
-    });
-    fs.unlinkSync(localFilePath);
-    return result.secure_url;
-  } catch (error) {
-    throw error;
-  }
+export const uploadToCloudinary = (fileBuffer, filename) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      {
+        folder: "products",
+        public_id: filename,
+      },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.secure_url);
+      }
+    );
+
+    stream.end(fileBuffer); 
+  });
 };
 
 export default connectCloudinary;

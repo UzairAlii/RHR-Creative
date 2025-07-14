@@ -8,10 +8,11 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import Slider from 'rc-slider'
 
 const CATEGORIES = [
-  { label: 'Handbags', value: 'Laptop Handbags' },
-  { label: 'Bagpacks', value: 'Laptop Bagpacks' },
-  { label: 'Sleeves', value: 'Laptop Sleeves' },
+  { label: 'Handbags', value: 'handbags' },
+  { label: 'Bagpacks', value: 'bagpacks' },
+  { label: 'Sleeves', value: 'sleeves' },
 ];
+
 
 const Collection = () => {
   const [selectedColors, setSelectedColors] = useState([])
@@ -57,6 +58,7 @@ const Collection = () => {
   }, [APIproducts]);
 
 
+
   const minPrice = useMemo(() => Math.min(...(allProducts?.map(p => p.price) || [0])), [allProducts])
   const maxPrice = useMemo(() => Math.max(...(allProducts?.map(p => p.price) || [100000])), [allProducts])
 
@@ -69,10 +71,16 @@ const Collection = () => {
     if (selectedColors.length > 0) {
       filtered = filtered.filter(item =>
         Array.isArray(item.colors) && item.colors.some(c => selectedColors.includes(c))
-
-
       )
     }
+
+   if (selectedCategories.length > 0) {
+  filtered = filtered.filter(item =>
+    selectedCategories.map(c => c.toLowerCase()).includes(item.category?.toLowerCase())
+  );
+}
+
+
     filtered = filtered.filter(item => item.price >= priceRange[0] && item.price <= priceRange[1])
 
     const getDiscountedPrice = (item) =>
@@ -209,6 +217,41 @@ const Collection = () => {
             </div>
           </div>
 
+          {/* Category Filter */}
+          <div className="mb-2 border-b-[1px] border-[grey] mt-5">
+            <button
+              className="w-full flex items-center justify-between py-3 text-left font-medium text-black focus:outline-none"
+              onClick={() => toggleSection('category')}
+            >
+              CATEGORY
+              <FontAwesomeIcon className={`transform transition-transform duration-200 ${openSection.category ? 'rotate-180' : 'rotate-0'}`} icon={faChevronDown} />
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ${openSection.category ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}
+            >
+              <div className="flex flex-col gap-2 px-1 pb-3">
+                {CATEGORIES.map(({ label, value }) => (
+                  <label key={value} className="flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedCategories.includes(value)}
+                      onChange={e => {
+                        if (e.target.checked) {
+                          setSelectedCategories([...selectedCategories, value])
+                        } else {
+                          setSelectedCategories(selectedCategories.filter(cat => cat !== value))
+                        }
+                      }}
+                      className="form-checkbox accent-black w-5 h-5 mr-3"
+                    />
+                    <span className="capitalize text-sm">{label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+
 
           {/* Color Filter */}
           <div className="mb-2 border-b-[1px] border-[grey] mt-5">
@@ -316,6 +359,7 @@ const Collection = () => {
               setSelectedCategories([])
               setInStockOnly(false)
               setPriceRange([minPrice, maxPrice])
+              setSelectedCategories([])
             }}
           >
             Reset Filters

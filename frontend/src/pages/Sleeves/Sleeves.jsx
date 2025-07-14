@@ -40,14 +40,6 @@ const colorCounts = useMemo(() => {
   return counts;
 }, [APIproducts]);
 
-  const categoryCounts = useMemo(() => {
-    const counts = {}
-    APIproducts?.forEach(item => {
-      const cat = item.category || ''
-      counts[cat] = (counts[cat] || 0) + 1
-    })
-    return counts
-  }, [APIproducts])
 
   const minPrice = useMemo(() => Math.min(...(APIproducts?.map(p => p.price) || [0])), [APIproducts])
   const maxPrice = useMemo(() => Math.max(...(APIproducts?.map(p => p.price) || [100000])), [APIproducts])

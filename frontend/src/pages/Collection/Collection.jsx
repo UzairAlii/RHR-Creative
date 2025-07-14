@@ -42,16 +42,20 @@ const Collection = () => {
   })
 
   const colorCounts = useMemo(() => {
-    const counts = {}
+    const counts = {};
     APIproducts?.forEach(item => {
-      if (Array.isArray(item.colors)) {
+      if (
+        ['bagpacks', 'handbags', 'sleeves'].includes(item.category) &&
+        Array.isArray(item.colors)
+      ) {
         item.colors.forEach(c => {
-          counts[c] = (counts[c] || 0) + 1
-        })
+          counts[c] = (counts[c] || 0) + 1;
+        });
       }
-    })
-    return counts
-  }, [APIproducts])
+    });
+    return counts;
+  }, [APIproducts]);
+
 
   const minPrice = useMemo(() => Math.min(...(allProducts?.map(p => p.price) || [0])), [allProducts])
   const maxPrice = useMemo(() => Math.max(...(allProducts?.map(p => p.price) || [100000])), [allProducts])
@@ -64,7 +68,9 @@ const Collection = () => {
     }
     if (selectedColors.length > 0) {
       filtered = filtered.filter(item =>
-        Array.isArray(item.color) && item.color.some(c => selectedColors.includes(c))
+        Array.isArray(item.colors) && item.colors.some(c => selectedColors.includes(c))
+
+
       )
     }
     filtered = filtered.filter(item => item.price >= priceRange[0] && item.price <= priceRange[1])

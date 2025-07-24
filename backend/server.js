@@ -18,10 +18,7 @@ connectCloudinary()
 // middlewares
 
 app.use(express.json())
-app.use(cors({
-  origin: ['https://admin.rhrcreative.com', 'https://rhrcreative.com'],
-  
-}))
+app.use(cors())
 
 
 app.use("/api/user", userRouter);

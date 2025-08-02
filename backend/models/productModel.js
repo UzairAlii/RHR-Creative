@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const specsSchema = new mongoose.Schema({
   material: String,
-  compat: String,
+  compatibility: String,
   texture: String,
   closure: String,
   compartment: String,

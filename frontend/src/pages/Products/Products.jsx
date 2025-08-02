@@ -409,7 +409,7 @@ const Product = ({ id }) => {
                   <h1 className="font-semibold text-base px-2 pb-1">Specifications</h1>
                   <ul className="text-gray-700 text-[12px] px-4 pb-4 list-disc">
                     <li>Material: {productData.specs?.material}</li>
-                    <li>Laptop Compatibility : {productData.specs?.compat}</li>
+                    <li>Laptop Compatibility : {productData.specs?.compatibility}</li>
                     <li>Texture: {productData.specs?.texture}</li>
                     <li>Closure: {productData.specs?.closure}</li>
                     <li>{productData.specs?.compartment}</li>

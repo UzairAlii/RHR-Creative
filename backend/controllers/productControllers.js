@@ -185,7 +185,7 @@ const editProduct = async (req, res) => {
             updateFields.bestSeller = updateFields.bestSeller === "true" || updateFields.bestSeller === true;
 
         const specKeys = [
-            "material", "compat", "texture", "closure", "compartment",
+            "material", "compatibility", "texture", "closure", "compartment",
             "zips", "strap", "length", "width", "height", "weight"
         ];
         const specs = {};

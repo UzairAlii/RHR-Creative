@@ -14,7 +14,7 @@ const NeedHelp = () => {
             <span className="font-medium">Email</span>
           </div>
           <div className="mb-2 text-sm font-semibold text-gray-700">
-            rehmanshahid00@gmail.com
+            rehmanshahid000@gmail.com
           </div>
           <div className="text-xs text-gray-600 mt-2">
             Customer Service operating hours:<br />

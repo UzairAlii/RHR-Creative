@@ -12,7 +12,7 @@ const faqData = [
           <li>We gladly accept returns, exchanges, or replacements of ONLY unused merchandise within 7 days from the date of delivery.</li>
           <li>Please note that all products must have their original tags, dust bags, and packaging boxes intact. All items should be unused and in brand-new condition.</li>
           <li>
-            If the product received is either damaged or has a manufacturing defect, contact Customer Service at <a href="mailto:rehmanshahid00@gmail.com" className="underline text-blue-600">rehmanshahid00@gmail.com</a> or simply message us on WhatsApp <a href="https://wa.me/923242934332" className="underline text-blue-600">+923 242934332</a> within 48 hours of delivery.
+            If the product received is either damaged or has a manufacturing defect, contact Customer Service at <a href="mailto:rehmanshahid000@gmail.com" className="underline text-blue-600">rehmanshahid000@gmail.com</a> or simply message us on WhatsApp <a href="https://wa.me/923242934332" className="underline text-blue-600">+923 242934332</a> within 48 hours of delivery.
           </li>
           <li>The pick-up and delivery of the products will be taken care of by RHR Creative.</li>
         </ul>
@@ -56,7 +56,7 @@ const faqData = [
   {
     question: "How do I check on my return status?",
     answer:
-      "Simply contact us via Email rehmanshahid00@gmail.com or contact us on WhatsApp +923 242934332",
+      "Simply contact us via Email rehmanshahid000@gmail.com or contact us on WhatsApp +923 242934332",
   },
   {
     question: "When will I receive the refund of my return?",

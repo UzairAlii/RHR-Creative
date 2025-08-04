@@ -32,7 +32,7 @@ const faqData = [
     question: "Can I cancel my order?",
     answer: (
       <>
-        Please contact us immediately via e-mail <a href="mailto:rehmanshahid00@gmail.com" className="underline text-blue-600">rehmanshahid00@gmail.com</a> or please WhatsApp our customer service. If you contact us within 30 minutes of placing your order we can cancel the order. However, once an order begins processing no changes can be made.<br /><br />
+        Please contact us immediately via e-mail <a href="mailto:rehmanshahid000@gmail.com" className="underline text-blue-600">rehmanshahid000@gmail.com</a> or please WhatsApp our customer service. If you contact us within 30 minutes of placing your order we can cancel the order. However, once an order begins processing no changes can be made.<br /><br />
         Most orders are shipped within 24 hours In Pakistan.
       </>
     ),
@@ -40,13 +40,13 @@ const faqData = [
   {
     question: "My order status is showing as cancelled and payment has been made, what should I do?",
     answer:
-      "Kindly contact our Customer Care at rehmanshahid00@gmail.com or please WhatsApp our customer service. with the Order ID, Name and Email address for assistance.",
+      "Kindly contact our Customer Care at rehmanshahid000@gmail.com or please WhatsApp our customer service. with the Order ID, Name and Email address for assistance.",
   },
   {
     question: "I received a damaged item, what should I do?",
     answer: (
       <>
-        Please contact our Customer Care at <a href="mailto:rehmanshahid00@gmail.com" className="underline text-blue-600">rehmanshahid00@gmail.com</a> or please WhatsApp our customer service immediately with the following information:<br /><br />
+        Please contact our Customer Care at <a href="mailto:rehmanshahid000@gmail.com" className="underline text-blue-600">rehmanshahid000@gmail.com</a> or please WhatsApp our customer service immediately with the following information:<br /><br />
         <ul className="list-disc pl-6">
           <li>Your order ID</li>
           <li>Images of the item(s) showing the overview and a close up of the issues.</li>

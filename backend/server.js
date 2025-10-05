@@ -21,8 +21,10 @@ app.use(express.json())
 
 const allowedOrigins = [
   'https://rhrcreative.com',
+  'https://www.rhrcreative.com',
   'https://admin.rhrcreative.com',
 ];
+
 
 app.use(cors({
   origin: function (origin, callback) {
